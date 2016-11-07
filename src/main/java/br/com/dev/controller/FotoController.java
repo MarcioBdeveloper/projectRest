@@ -44,7 +44,7 @@ public class FotoController {
 	}
 	 
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void excluirFoto(@PathVariable Long id){
 		fotoService.excluirFoto(id);
 	}
