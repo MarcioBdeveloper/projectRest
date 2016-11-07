@@ -41,5 +41,9 @@ public class FotoService {
 	public void excluirFoto(Long id){
 		fotoRepository.delete(id);
 	}
+	
+	public Foto buscaPorId(Long id){
+		return fotoRepository.findOne(id);
+	}
 
 }

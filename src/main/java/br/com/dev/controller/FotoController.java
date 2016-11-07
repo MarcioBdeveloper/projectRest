@@ -48,4 +48,9 @@ public class FotoController {
 	public void excluirFoto(@PathVariable("id") Long id){
 		fotoService.excluirFoto(id);
 	}
+	
+	@RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Foto buscaPorId(@PathVariable("id") Long id){
+		return fotoService.buscaPorId(id);
+	}
 }
