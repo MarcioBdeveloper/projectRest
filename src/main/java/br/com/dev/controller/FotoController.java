@@ -5,55 +5,52 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.dev.entity.Contas;
-import br.com.dev.entity.Usuario;
-import br.com.dev.repository.ContaRepository;
+import br.com.dev.entity.Foto;
+import br.com.dev.repository.FotoRepository;
 
 
 
 /***
  * 
  * Created by Márcio Barbosa - email: marciobarbosamobile@gmail.com
- * 29/02/2016
+ * 07/11/2016
  * */
 
 @RestController
-@RequestMapping("/contas")
-public class ContasController {
+@CrossOrigin
+@RequestMapping("/foto")
+public class FotoController {
 
-
+	
 	@Autowired
-	private ContaRepository contaRepository;
+	private FotoRepository fotoRepository;
+
 	
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Contas> listaContas(){
-		List<Contas> listaConta = new ArrayList<Contas>();
+	public List<Foto> listaFotos(){
+		List<Foto> listaFoto = new ArrayList<Foto>();
 		try {
-			listaConta = (List<Contas>) contaRepository.findAll();
+			listaFoto = (List<Foto>) fotoRepository.findAll();
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
-		
-		return listaConta;
+		return listaFoto;
 	}
 	
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void savarConta(@RequestBody Contas conta){
-		contaRepository.save(conta);
+	public void savarFoto(@RequestBody Foto foto){
+		fotoRepository.save(foto);
 	}
-	
-	@RequestMapping(value = "/editar", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void editarConta(@RequestBody Contas conta){
-		contaRepository.save(conta);
-	}
+	 
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void excluirConta(@RequestBody Contas conta){
-		contaRepository.delete(conta);
+	public void excluirFoto(@RequestBody Foto foto){
+		fotoRepository.delete(foto);
 	}
 }

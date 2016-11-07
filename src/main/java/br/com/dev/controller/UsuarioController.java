@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.dev.entity.Foto;
 import br.com.dev.entity.Usuario;
-import br.com.dev.repository.FotoRepository;
 import br.com.dev.repository.UsuarioRepository;
 
 
@@ -32,9 +30,7 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
-	@Autowired
-	private FotoRepository fotoRepository;
+
 	
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Usuario> listaUsuarios(){
@@ -48,21 +44,6 @@ public class UsuarioController {
 		return listaUsuario;
 	}
 	
-	@RequestMapping(value = "/fotos",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Foto> listaFotos(){
-		List<Foto> listaFoto = new ArrayList<Foto>();
-		try {
-			listaFoto = (List<Foto>) fotoRepository.findAll();
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-		return listaFoto;
-	}
-	
-	@RequestMapping(value = "/fotos/salvar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void savarFoto(@RequestBody Foto foto){
-		fotoRepository.save(foto);
-	}
 	
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void savarUsuario(@RequestBody Usuario usuario){
